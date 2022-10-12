@@ -14,7 +14,7 @@ services:
     ports:
       - 3000:3000
   postgres:
-    image: postgres
+    image: postgres:14.4-alpine
     restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
