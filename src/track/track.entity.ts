@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import TrackPointEntity from '../track_point/track_point.entity';
+import TrackPointEntity from '../trackPoint/trackPoint.entity';
 
 @Entity()
 class TrackEntity {

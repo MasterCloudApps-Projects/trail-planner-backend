@@ -2,7 +2,8 @@ import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
 import TrackEntity from './src/track/track.entity';
-import TrackPointEntity from './src/track_point/track_point.entity';
+import TrackPointEntity from './src/trackPoint/trackPoint.entity';
+import FeatureFlagEntity from './src/featureFlags/featureFlag.entity';
 
 config();
 
@@ -15,6 +16,6 @@ export default new DataSource({
   username: configService.get('POSTGRES_USER'),
   password: configService.get('POSTGRES_PASSWORD'),
   database: configService.get('POSTGRES_DB'),
-  entities: [TrackEntity, TrackPointEntity],
+  entities: [TrackEntity, TrackPointEntity, FeatureFlagEntity],
   migrations: ['./migrations/*.ts'],
 });
