@@ -15,11 +15,13 @@ class TrackPointEntity {
   })
   id: number;
 
-  @Column({ type: 'float' })
-  utm_x: number;
-
-  @Column({ type: 'float' })
-  utm_y: number;
+  @Column({
+    type: 'geometry',
+    srid: 4326,
+    nullable: false,
+    spatialFeatureType: 'Point',
+  })
+  coordinates: string;
 
   @Column({ type: 'int' })
   elevation: number;
