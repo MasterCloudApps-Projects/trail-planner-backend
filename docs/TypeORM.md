@@ -52,3 +52,23 @@ Para ejecutar las migraciones y sincronizar la base de datos:
 ```shell
 npm run typeorm:run-migrations
 ```
+## Tipos de datos Geoespaciales
+Para poder utilizar los tipos de datos geoespaciales que da la extensión 
+PostGIS de Postgres tenemos que instalar la librería de tipos:
+```shell
+npm install --save @types/geojson 
+```
+TypeORM tiene soporte para tipos Geoespaciales en GeoJSON. En el caso de 
+Postgres las columnas tienen que ser etiquetadas como geometry/object, en 
+caso de MySQL/MariaDB como string.
+
+En las entidades, anotamos los campos de tipo geoespacial:
+```typescript
+  @Column({
+    type: 'geometry',
+    srid: 4326,
+    nullable: false,
+    spatialFeatureType: 'Point',
+  })
+  coordinates: string;
+```
