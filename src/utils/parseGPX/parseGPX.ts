@@ -21,14 +21,16 @@ export class ParseGPX {
 
     this.trackName = gpxParsed.gpx.trk.name;
 
-    gpxParsed.gpx.trk.trkseg.trkpt.map((trkpt) => {
-      const trackPoint = new TrackPoint(
-        trkpt.lat,
-        trkpt.lon,
-        trkpt.ele,
-        new Date(trkpt.time),
-      );
-      this.trackPoints.push(trackPoint);
-    });
+    if (gpxParsed.gpx.trk.trkseg !== undefined) {
+      gpxParsed.gpx.trk.trkseg.trkpt.map((trkpt) => {
+        const trackPoint = new TrackPoint(
+          trkpt.lat,
+          trkpt.lon,
+          trkpt.ele,
+          new Date(trkpt.time),
+        );
+        this.trackPoints.push(trackPoint);
+      });
+    }
   }
 }

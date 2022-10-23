@@ -24,7 +24,9 @@ class TrackEntity {
   @Column()
   type: string;
 
-  @OneToMany(() => TrackPointEntity, (trackPoint) => trackPoint.track)
+  @OneToMany(() => TrackPointEntity, (trackPoint) => trackPoint.track, {
+    cascade: true,
+  })
   trackPoints: TrackPointEntity[];
 
   @CreateDateColumn({
