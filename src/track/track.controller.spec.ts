@@ -1,18 +1,25 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TrackController } from './track.controller';
+import { TrackService } from './track.service';
+import fs from 'fs';
 
 describe('TrackController', () => {
-  let controller: TrackController;
+  let trackController: TrackController;
+  const mockTrackService = {};
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [TrackController],
-    }).compile();
+      providers: [TrackService],
+    })
+      .overrideProvider(TrackService)
+      .useValue(mockTrackService)
+      .compile();
 
-    controller = module.get<TrackController>(TrackController);
+    trackController = module.get<TrackController>(TrackController);
   });
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
+    expect(trackController).toBeDefined();
   });
 });

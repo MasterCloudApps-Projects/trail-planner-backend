@@ -4,7 +4,6 @@ import TrackEntity from './track.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import TrackPointEntity from '../trackPoint/trackPoint.entity';
 import { Repository } from 'typeorm';
-import { Point } from 'geojson';
 import { TrackPoint } from '../utils/parseGPX/trackPoint';
 
 @Injectable()
@@ -14,7 +13,7 @@ export class TrackService {
     private trackRepository: Repository<TrackEntity>,
   ) {}
 
-  parseGPX(gpx: string) {
+  async parseGPX(gpx: string) {
     const parsedGPX = new ParseGPX(gpx);
 
     const trackEntity = new TrackEntity();
@@ -33,6 +32,6 @@ export class TrackService {
       trackEntity.trackPoints.push(trackPointEntity);
     });
 
-    this.trackRepository.save(trackEntity);
+    await this.trackRepository.save(trackEntity, { chunk: 1000 });
   }
 }

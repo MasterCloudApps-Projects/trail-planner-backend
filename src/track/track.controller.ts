@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Post,
   UploadedFile,
@@ -6,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { TrackService } from './track.service';
+import { UploadGPXDto } from './dto/uploadGPX.dto';
 
 @Controller('track')
 export class TrackController {
@@ -13,7 +15,10 @@ export class TrackController {
 
   @Post('/upload-gpx')
   @UseInterceptors(FileInterceptor('file'))
-  uploadGPX(@UploadedFile() file: Express.Multer.File) {
-    this.trackService.parseGPX(file.buffer.toString());
+  async uploadGPX(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() uploadGpxDto: UploadGPXDto,
+  ) {
+    await this.trackService.parseGPX(file.buffer.toString());
   }
 }

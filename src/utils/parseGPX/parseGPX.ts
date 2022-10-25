@@ -26,7 +26,7 @@ export class ParseGPX {
         const trackPoint = new TrackPoint(
           trkpt.lat,
           trkpt.lon,
-          trkpt.ele,
+          Math.round(trkpt.ele),
           new Date(trkpt.time),
         );
         this.trackPoints.push(trackPoint);
