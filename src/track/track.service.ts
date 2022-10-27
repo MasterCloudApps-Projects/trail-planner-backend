@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { ParseGPX } from '../utils/parseGPX/parseGPX';
+import { GPXParser } from '../utils/GPXParser/GPXParser';
 import TrackEntity from './track.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import TrackPointEntity from '../trackPoint/trackPoint.entity';
 import { Repository } from 'typeorm';
-import { TrackPoint } from '../utils/parseGPX/trackPoint';
+import { TrackPoint } from '../utils/GPXParser/trackPoint';
 
 @Injectable()
 export class TrackService {
@@ -14,23 +14,26 @@ export class TrackService {
   ) {}
 
   async parseGPX(gpx: string) {
-    const parsedGPX = new ParseGPX(gpx);
+    const parser = new GPXParser();
+    const gpxData = parser.parse(gpx);
 
     const trackEntity = new TrackEntity();
-    trackEntity.name = parsedGPX.trackName;
+    trackEntity.name = gpxData.name;
     trackEntity.trackPoints = [];
-    trackEntity.description = parsedGPX.trackName;
+    trackEntity.description = gpxData.name;
     trackEntity.type = 'default';
 
-    parsedGPX.trackPoints.map((trackPoint: TrackPoint) => {
-      const trackPointEntity = new TrackPointEntity();
-      trackPointEntity.elevation = trackPoint.elevation;
-      trackPointEntity.coordinates = {
-        type: 'Point',
-        coordinates: [trackPoint.longitude, trackPoint.latitude],
-      };
-      trackEntity.trackPoints.push(trackPointEntity);
-    });
+    gpxData.tracks[0].trackSegments[0].trackPoints.map(
+      (trackPoint: TrackPoint) => {
+        const trackPointEntity = new TrackPointEntity();
+        trackPointEntity.elevation = trackPoint.elevation;
+        trackPointEntity.coordinates = {
+          type: 'Point',
+          coordinates: [trackPoint.longitude, trackPoint.latitude],
+        };
+        trackEntity.trackPoints.push(trackPointEntity);
+      },
+    );
 
     await this.trackRepository.save(trackEntity, { chunk: 1000 });
   }
