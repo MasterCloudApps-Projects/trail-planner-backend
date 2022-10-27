@@ -37,4 +37,12 @@ export class TrackService {
 
     await this.trackRepository.save(trackEntity, { chunk: 1000 });
   }
+
+  async getTrackInfo(trackId: number): Promise<TrackEntity> {
+    return await this.trackRepository.findOne({
+      where: {
+        id: trackId,
+      },
+    });
+  }
 }
