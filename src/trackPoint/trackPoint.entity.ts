@@ -27,7 +27,9 @@ class TrackPointEntity {
   @Column({ type: 'int' })
   elevation: number;
 
-  @ManyToOne(() => TrackEntity, (trackEntity) => trackEntity.trackPoints)
+  @ManyToOne(() => TrackEntity, (trackEntity) => trackEntity.trackPoints, {
+    onDelete: 'CASCADE',
+  })
   track: TrackEntity;
 
   @CreateDateColumn({

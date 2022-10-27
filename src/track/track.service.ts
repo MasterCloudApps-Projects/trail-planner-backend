@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import TrackPointEntity from '../trackPoint/trackPoint.entity';
 import { Repository } from 'typeorm';
 import { TrackPoint } from '../utils/GPXParser/trackPoint';
+import { TrackInfoDto } from './dto/trackInfo.dto';
 
 @Injectable()
 export class TrackService {
@@ -44,5 +45,23 @@ export class TrackService {
         id: trackId,
       },
     });
+  }
+
+  async deleteTrack(trackId: number) {
+    return await this.trackRepository.delete(trackId);
+  }
+
+  async updateTrack(trackId: number, trackInfo: TrackInfoDto) {
+    const track: TrackEntity = await this.trackRepository.findOne({
+      where: {
+        id: trackId,
+      },
+    });
+
+    track.name = trackInfo.name;
+    track.description = trackInfo.description;
+    track.type = trackInfo.type;
+
+    return await this.trackRepository.save(track);
   }
 }

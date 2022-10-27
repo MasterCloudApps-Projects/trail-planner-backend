@@ -1,16 +1,15 @@
-import { TrackPointDto } from './trackPoint.dto';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class TrackInfoDto {
-  public readonly name: string;
-  public readonly description: string;
-  public readonly type: string;
-  public readonly points: TrackPointDto[];
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-  constructor() {
-    this.points = [];
-  }
+  @IsString()
+  @IsNotEmpty()
+  description: string;
 
-  addPoint(point: TrackPointDto) {
-    this.points.push(point);
-  }
+  @IsString()
+  @IsNotEmpty()
+  type: string;
 }

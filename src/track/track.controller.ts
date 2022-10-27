@@ -1,15 +1,17 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
+  Put,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { TrackService } from './track.service';
-import { UploadGPXDto } from './dto/uploadGPX.dto';
+import { TrackInfoDto } from './dto/trackInfo.dto';
 import TrackEntity from './track.entity';
 
 @Controller('track')
@@ -20,7 +22,7 @@ export class TrackController {
   @UseInterceptors(FileInterceptor('file'))
   async uploadGPX(
     @UploadedFile() file: Express.Multer.File,
-    @Body() uploadGpxDto: UploadGPXDto,
+    @Body() uploadGpxDto: TrackInfoDto,
   ) {
     await this.trackService.parseGPX(file.buffer.toString());
   }
@@ -28,5 +30,15 @@ export class TrackController {
   @Get(':trackId')
   async getTrackInfo(@Param() params): Promise<TrackEntity> {
     return this.trackService.getTrackInfo(params.trackId);
+  }
+
+  @Delete(':trackId')
+  async deleteTrack(@Param() params) {
+    return await this.trackService.deleteTrack(params.trackId);
+  }
+
+  @Put(':trackId')
+  async updateTrackInfo(@Param() params, @Body() trackInfo: TrackInfoDto) {
+    return await this.trackService.updateTrack(params.trackId, trackInfo);
   }
 }

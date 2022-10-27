@@ -5,8 +5,8 @@
 - [x] Hacer que funcione con ficheros grandes (stream?).
   - Hecho con `chunk` en las opciones de `save`
 - [ ] Crear el servicio para hacer el parser
-- [ ] Crear endpoint para obtener info del GPX.
-- [ ] Crear endpoint para borrar GPX.
+- [x] Crear endpoint para obtener info del GPX.
+- [x] Crear endpoint para borrar GPX.
 - [ ] Endpoint para editar nombre, tipo y descripción.
 - [ ] Cambiar el tipo de dato de elevation a float
   - Primero crear el campo que permita nulls `elevation_float` y copiar `elevation`

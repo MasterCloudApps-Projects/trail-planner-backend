@@ -25,7 +25,6 @@ class TrackEntity {
   type: string;
 
   @OneToMany(() => TrackPointEntity, (trackPoint) => trackPoint.track, {
-    cascade: true,
     eager: true,
   })
   trackPoints: TrackPointEntity[];
