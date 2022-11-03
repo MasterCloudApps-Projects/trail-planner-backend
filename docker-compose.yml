@@ -12,7 +12,7 @@ services:
     # Run a command against the development stage of the image
     command: npm run start:dev
     ports:
-      - 3000:8080
+      - 8080:8080
   postgres:
     image: postgis/postgis:14-3.3
     restart: always
