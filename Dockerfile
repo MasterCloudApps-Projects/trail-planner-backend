@@ -1,7 +1,7 @@
 ###################
 # BUILD FOR LOCAL DEVELOPMENT
 ###################
-FROM node:18-bullseye As development
+FROM public.ecr.aws/docker/library/node:18.12-bullseye-slim As development
 
 WORKDIR /usr/src/app
 COPY --chown=node:node package*.json ./
@@ -12,7 +12,7 @@ USER node
 ###################
 # BUILD FOR PRODUCTION
 ###################
-FROM node:18-bullseye-slim As build
+FROM public.ecr.aws/docker/library/node:18.12-bullseye-slim As build
 
 WORKDIR /usr/src/app
 COPY --chown=node:node package*.json ./
@@ -26,7 +26,7 @@ USER node
 ###################
 # PRODUCTION
 ###################
-FROM node:18-bullseye-slim As production
+FROM public.ecr.aws/docker/library/node:18.12-bullseye-slim As production
 
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
