@@ -4,6 +4,8 @@ export class FirstVersion1666894097636 implements MigrationInterface {
   name = 'FirstVersion1666894097636';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS postgis');
+
     await queryRunner.query(`CREATE TABLE "track_point_entity"
                              (
                                  "id"          integer GENERATED ALWAYS AS IDENTITY NOT NULL,
