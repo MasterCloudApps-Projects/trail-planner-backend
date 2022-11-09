@@ -8,7 +8,7 @@
 - [x] Crear endpoint para obtener info del GPX.
 - [x] Crear endpoint para borrar GPX.
 - [x] Endpoint para editar nombre, tipo y descripción.
-- [ ] Quitar el eager y hacer un endpoint de info de puntos.
+- [x] Quitar el eager y hacer un endpoint de info de puntos.
 - [ ] Cambiar el tipo de dato de elevation a float
   - Primero crear el campo que permita nulls `elevation_float` y copiar `elevation`
   - Hacer que escriba en los dos campos
