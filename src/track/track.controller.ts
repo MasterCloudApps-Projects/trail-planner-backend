@@ -13,10 +13,15 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { TrackService } from './track.service';
 import { TrackInfoDto } from './dto/trackInfo.dto';
 import TrackEntity from './track.entity';
+import TrackPointEntity from '../trackPoint/trackPoint.entity';
+import { TrackPointService } from '../trackPoint/trackPoint.service';
 
 @Controller('track')
 export class TrackController {
-  constructor(private readonly trackService: TrackService) {}
+  constructor(
+    private readonly trackService: TrackService,
+    private readonly trackPointService: TrackPointService,
+  ) {}
 
   @Post('/upload-gpx')
   @UseInterceptors(FileInterceptor('file'))
@@ -40,5 +45,10 @@ export class TrackController {
   @Put(':trackId')
   async updateTrackInfo(@Param() params, @Body() trackInfo: TrackInfoDto) {
     return await this.trackService.updateTrack(params.trackId, trackInfo);
+  }
+
+  @Get('/track-points/:trackId')
+  async getTrackPoints(@Param() params): Promise<TrackPointEntity[]> {
+    return await this.trackPointService.getTrackPoints(params.trackId);
   }
 }
