@@ -2,38 +2,37 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from 'typeorm';
-import TrackPointEntity from '../trackPoint/trackPoint.entity';
-import { Segment } from '../segment/entities/segment.entity';
+import TrackEntity from '../../track/track.entity';
+import TrackPointEntity from '../../trackPoint/trackPoint.entity';
 
 @Entity()
-class TrackEntity {
+export class Segment {
   @PrimaryGeneratedColumn('identity', {
     generatedIdentity: 'ALWAYS',
   })
   id: number;
 
   @Column()
-  name: string;
+  title: string;
 
   @Column()
   description: string;
 
-  @Column()
-  type: string;
-
-  @OneToMany(() => TrackPointEntity, (trackPoint) => trackPoint.track, {
-    eager: true,
+  @ManyToOne(() => TrackEntity, (trackEntity) => trackEntity.segments, {
+    onDelete: 'CASCADE',
   })
-  trackPoints: TrackPointEntity[];
+  track: TrackEntity;
 
-  @OneToMany(() => Segment, (segment) => segment.track, {
-    eager: true,
-  })
-  segments: Segment[];
+  @OneToOne(() => TrackPointEntity)
+  initialPoint: TrackPointEntity;
+
+  @OneToOne(() => TrackPointEntity)
+  finalPoint: TrackPointEntity;
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -48,5 +47,3 @@ class TrackEntity {
   })
   updated_at: Date;
 }
-
-export default TrackEntity;
