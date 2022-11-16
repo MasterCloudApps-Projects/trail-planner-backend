@@ -23,7 +23,27 @@ describe('TrackController', () => {
     trackController = module.get<TrackController>(TrackController);
   });
 
-  it('should be defined', () => {
+  it('Controller should be defined', () => {
     expect(trackController).toBeDefined();
+  });
+
+  it('uploadGPX should be defined', () => {
+    expect(trackController.uploadGPX).toBeDefined();
+  });
+
+  it('getTrackInfo should be defined', () => {
+    expect(trackController.getTrackInfo).toBeDefined();
+  });
+
+  it('deleteTrack should be defined', () => {
+    expect(trackController.deleteTrack).toBeDefined();
+  });
+
+  it('updateTrackInfo should be defined', () => {
+    expect(trackController.updateTrackInfo).toBeDefined();
+  });
+
+  it('getTrackPoints should be defined', () => {
+    expect(trackController.getTrackPoints).toBeDefined();
   });
 });
