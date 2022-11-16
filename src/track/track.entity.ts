@@ -30,11 +30,6 @@ class TrackEntity {
   })
   trackPoints: TrackPointEntity[];
 
-  @OneToMany(() => Segment, (segment) => segment.track, {
-    eager: true,
-  })
-  segments: Segment[];
-
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',

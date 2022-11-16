@@ -5,7 +5,8 @@ import {
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  JoinColumn, OneToMany,
 } from 'typeorm';
 import TrackEntity from '../../track/track.entity';
 import TrackPointEntity from '../../trackPoint/trackPoint.entity';
@@ -23,15 +24,13 @@ export class Segment {
   @Column()
   description: string;
 
-  @ManyToOne(() => TrackEntity, (trackEntity) => trackEntity.segments, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => TrackEntity)
   track: TrackEntity;
 
-  @OneToOne(() => TrackPointEntity)
+  @ManyToOne(() => TrackPointEntity)
   initialPoint: TrackPointEntity;
 
-  @OneToOne(() => TrackPointEntity)
+  @ManyToOne(() => TrackPointEntity)
   finalPoint: TrackPointEntity;
 
   @CreateDateColumn({

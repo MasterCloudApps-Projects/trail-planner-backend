@@ -1,7 +1,19 @@
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+
 export class CreateSegmentDto {
-  public readonly trackId: number;
-  public readonly title: string;
-  public readonly description: string;
-  public readonly initialPointId: number;
-  public readonly finalPointId: number;
+  @IsNumber()
+  @IsNotEmpty()
+  public trackId: number;
+  @IsString()
+  @IsNotEmpty()
+  public title: string;
+  @IsString()
+  @IsNotEmpty()
+  public description: string;
+  @IsNumber()
+  @IsNotEmpty()
+  public initialPointId: number;
+  @IsNumber()
+  @IsNotEmpty()
+  public finalPointId: number;
 }

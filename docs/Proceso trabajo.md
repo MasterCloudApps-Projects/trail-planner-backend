@@ -17,9 +17,12 @@
     `elevation`
 - [ ] Cambiar el endpoint de Upload para que suba a un S3
 
-- [ ] Endpoint para cargar segmentos
+- [x] Endpoint para cargar segmentos
 - [ ] Endpoint para borrar segmentos
 - [ ] Endpoint para obtener la lista de segmentos
 - [ ] Endpoint para obtener la información de un segmento
 
 - [ ] Endpoint CRUD para acciones del segmento
+- [ ] Quitar Entity del nombre de las clases
+- [ ] Cambiar la relación de trackpoints en Track y TrackPoint
+- [ ] Devolver DTOS en los endpoints

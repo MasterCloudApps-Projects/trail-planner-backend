@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 import TrackEntity from './src/track/track.entity';
 import TrackPointEntity from './src/trackPoint/trackPoint.entity';
 import FeatureFlagEntity from './src/featureFlags/featureFlag.entity';
+import { Segment } from './src/segment/entities/segment.entity';
 
 config();
 
@@ -16,6 +17,6 @@ export default new DataSource({
   username: configService.get('POSTGRES_USER'),
   password: configService.get('POSTGRES_PASSWORD'),
   database: configService.get('POSTGRES_DB'),
-  entities: [TrackEntity, TrackPointEntity, FeatureFlagEntity],
+  entities: [TrackEntity, TrackPointEntity, FeatureFlagEntity, Segment],
   migrations: ['./migrations/*.ts'],
 });
