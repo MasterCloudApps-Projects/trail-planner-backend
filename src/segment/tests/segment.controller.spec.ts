@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SegmentController } from './segment.controller';
-import { SegmentService } from './segment.service';
+import { SegmentController } from '../segment.controller';
+import { SegmentService } from '../segment.service';
 
 describe('SegmentController', () => {
   let controller: SegmentController;

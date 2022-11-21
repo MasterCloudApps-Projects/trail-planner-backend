@@ -56,28 +56,28 @@ export class SegmentService {
     return `This action removes a #${id} segment`;
   }
 
-  private getTrackOrThrow(id: number) {
-    const result = this.trackRepository.findOne({
+  private async getTrackOrThrow(id: number) {
+    const result = await this.trackRepository.findOne({
       where: {
         id,
       },
     });
 
-    if (result === null) {
+    if (!result) {
       throw new TrackNotFoundException();
     }
 
     return result;
   }
 
-  private getTrackPointOrThrow(id: number) {
-    const result = this.trackPointRepository.findOne({
+  private async getTrackPointOrThrow(id: number) {
+    const result = await this.trackPointRepository.findOne({
       where: {
         id,
       },
     });
 
-    if (result === null) {
+    if (result === undefined) {
       throw new TrackPointNotFoundException();
     }
 

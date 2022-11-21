@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TrackController } from './track.controller';
 import { TrackService } from './track.service';
-import fs from 'fs';
 import { TrackPointService } from '../trackPoint/trackPoint.service';
 
 describe('TrackController', () => {
