@@ -6,9 +6,18 @@ describe('SegmentController', () => {
   let controller: SegmentController;
 
   beforeEach(async () => {
+    const createSegment = jest.fn();
+
     const module: TestingModule = await Test.createTestingModule({
       controllers: [SegmentController],
-      providers: [SegmentService],
+      providers: [
+        {
+          provide: SegmentService,
+          useValue: {
+            create: createSegment,
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<SegmentController>(SegmentController);
@@ -16,5 +25,21 @@ describe('SegmentController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('should create a segment', () => {
+    // TODO Implement test
+  });
+
+  it('should not create segment when track not exists', () => {
+    // TODO Implement test
+  });
+
+  it('should not create segment when initial track point not exists', () => {
+    // TODO Implement test
+  });
+
+  it('should not create segment when final track point not exists', () => {
+    // TODO Implement test
   });
 });
