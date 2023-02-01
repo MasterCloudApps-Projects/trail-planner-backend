@@ -5,6 +5,9 @@ services:
       context: .
       # Only will build development stage from our dockerfile
       target: development
+      args:
+        - "UID=${UID:-1001}"
+        - "GID=${GID:-1001}"
     volumes:
       - .:/usr/src/app
     env_file:
@@ -13,6 +16,11 @@ services:
     command: npm run start:dev
     ports:
       - 8080:8080
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+
   postgres:
     image: postgis/postgis:14-3.3
     restart: always
@@ -24,6 +32,11 @@ services:
       - '5432:5432'
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - postgres
 
 volumes:
   postgres-data:
+networks:
+  postgres:
+    driver: bridge
