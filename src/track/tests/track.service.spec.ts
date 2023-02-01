@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TrackService } from './track.service';
-import TrackEntity from './track.entity';
+import { TrackService } from '../track.service';
+import TrackEntity from '../track.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('TrackService', () => {

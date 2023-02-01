@@ -47,7 +47,7 @@ export class TrackController {
     return await this.trackService.updateTrack(params.trackId, trackInfo);
   }
 
-  @Get('/track-points/:trackId')
+  @Get('/:trackId/track-points')
   async getTrackPoints(@Param() params): Promise<TrackPointEntity[]> {
     return await this.trackPointService.getTrackPoints(params.trackId);
   }
