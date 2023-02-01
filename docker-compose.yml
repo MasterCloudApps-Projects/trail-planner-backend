@@ -3,16 +3,12 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-      # Only will build development stage from our dockerfile
       target: development
       args:
         - "UID=${UID:-1001}"
         - "GID=${GID:-1001}"
     volumes:
       - .:/usr/src/app
-    env_file:
-      - .env
-    # Run a command against the development stage of the image
     command: npm run start:dev
     ports:
       - 8080:8080

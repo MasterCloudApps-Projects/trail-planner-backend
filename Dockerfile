@@ -3,8 +3,12 @@
 ###################
 FROM public.ecr.aws/docker/library/node:18.12-bullseye-slim As development
 
-RUN groupmod -g "${GID}" node && usermod -u "${UID}" -g "${GID}" node
 WORKDIR /usr/src/app
+
+ARG UID=1000
+ARG GID=1000
+RUN groupmod -g "${GID}" node && usermod -u "${UID}" -g "${GID}" node
+
 COPY --chown=node:node package*.json ./
 RUN npm ci
 COPY --chown=node:node . .
