@@ -3,10 +3,8 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  JoinColumn, OneToMany,
 } from 'typeorm';
 import TrackEntity from '../../track/track.entity';
 import TrackPointEntity from '../../trackPoint/trackPoint.entity';

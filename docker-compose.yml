@@ -18,7 +18,7 @@ services:
       - postgres
 
   postgres:
-    image: postgis/postgis:14-3.3
+    image: postgres:14.6-alpine
     restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}

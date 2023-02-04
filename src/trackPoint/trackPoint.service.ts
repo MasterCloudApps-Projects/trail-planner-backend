@@ -7,7 +7,7 @@ import { Repository } from 'typeorm';
 export class TrackPointService {
   constructor(
     @InjectRepository(TrackPointEntity)
-    private trackPointRepository: Repository<TrackPointEntity>
+    private trackPointRepository: Repository<TrackPointEntity>,
   ) {}
 
   async getTrackPoints(trackId: number) {

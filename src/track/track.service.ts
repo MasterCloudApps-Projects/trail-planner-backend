@@ -28,10 +28,8 @@ export class TrackService {
       (trackPoint: TrackPoint) => {
         const trackPointEntity = new TrackPointEntity();
         trackPointEntity.elevation = trackPoint.elevation;
-        trackPointEntity.coordinates = {
-          type: 'Point',
-          coordinates: [trackPoint.longitude, trackPoint.latitude],
-        };
+        trackPointEntity.longitude = trackPoint.longitude;
+        trackPointEntity.latitude = trackPoint.latitude;
         trackEntity.trackPoints.push(trackPointEntity);
       },
     );

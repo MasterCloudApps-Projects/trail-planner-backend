@@ -7,7 +7,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import TrackEntity from '../track/track.entity';
-import { Point } from 'geojson';
 
 @Entity()
 class TrackPointEntity {
@@ -16,13 +15,11 @@ class TrackPointEntity {
   })
   id: number;
 
-  @Column({
-    type: 'geometry',
-    srid: 4326,
-    nullable: false,
-    spatialFeatureType: 'Point',
-  })
-  coordinates: Point;
+  @Column({ type: 'float' })
+  latitude: number;
+
+  @Column({ type: 'float' })
+  longitude: number;
 
   @Column({ type: 'int' })
   elevation: number;

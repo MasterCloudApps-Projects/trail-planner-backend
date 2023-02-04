@@ -7,7 +7,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import TrackPointEntity from '../trackPoint/trackPoint.entity';
-import { Segment } from '../segment/entities/segment.entity';
 
 @Entity()
 class TrackEntity {
@@ -27,6 +26,7 @@ class TrackEntity {
 
   @OneToMany(() => TrackPointEntity, (trackPoint) => trackPoint.track, {
     eager: true,
+    cascade: ['insert', 'update'],
   })
   trackPoints: TrackPointEntity[];
 
