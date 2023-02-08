@@ -62,4 +62,8 @@ export class TrackService {
 
     return await this.trackRepository.save(track);
   }
+
+  async getTrackList() {
+    return await this.trackRepository.find();
+  }
 }
