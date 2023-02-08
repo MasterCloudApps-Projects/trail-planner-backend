@@ -10,8 +10,8 @@ services:
       - .:/usr/src/app
     command: npm run start:dev
     ports:
-      - target: 80
-        published: ${HTTP_PORT:-80}
+      - target: 8080
+        published: ${HTTP_PORT:-8080}
         protocol: tcp
     depends_on:
       - postgres
