@@ -1,13 +1,13 @@
 ###################
 # BUILD FOR LOCAL DEVELOPMENT
 ###################
-FROM public.ecr.aws/docker/library/node:19.6-bullseye-slim As development
+FROM node:19.6-bullseye As development
 
 WORKDIR /usr/src/app
 
 ARG UID=1000
-ARG GID=1000
-RUN groupmod -g "${GID}" node && usermod -u "${UID}" -g "${GID}" node
+
+RUN usermod -u "${UID}" node
 
 COPY --chown=node:node package*.json ./
 RUN npm ci

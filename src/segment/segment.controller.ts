@@ -11,7 +11,7 @@ import { SegmentService } from './segment.service';
 import { CreateSegmentDto } from './dto/create-segment.dto';
 import { UpdateSegmentDto } from './dto/update-segment.dto';
 
-@Controller('segment')
+@Controller('segments')
 export class SegmentController {
   constructor(private readonly segmentService: SegmentService) {}
 

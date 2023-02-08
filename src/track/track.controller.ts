@@ -16,7 +16,7 @@ import TrackEntity from './track.entity';
 import TrackPointEntity from '../trackPoint/trackPoint.entity';
 import { TrackPointService } from '../trackPoint/trackPoint.service';
 
-@Controller('track')
+@Controller('tracks')
 export class TrackController {
   constructor(
     private readonly trackService: TrackService,

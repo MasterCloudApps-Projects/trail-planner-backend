@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TrackService } from '../track.service';
 import TrackEntity from '../track.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import gpxFileContents from './gpx_file_contents';
 
 describe('TrackService', () => {
   let trackService: TrackService;
@@ -31,5 +32,9 @@ describe('TrackService', () => {
 
   it('should be defined', () => {
     expect(trackService).toBeDefined();
+  });
+
+  it('should parse GPX and save track', () => {
+    trackService.parseGPX(gpxFileContents);
   });
 });

@@ -7,7 +7,7 @@ stop:
 build:
 	docker compose build --pull --no-cache
 
-shell:
+run-shell:
 	docker compose exec api bash
 
 migrations:
